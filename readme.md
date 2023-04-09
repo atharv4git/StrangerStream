@@ -1,4 +1,7 @@
 # StrangerStream
+```diff
+- Status: INCOMPLETE
+```
 ### Problem Statement:
 The goal of this project is to create a web-based chat platform that allows users to connect with random strangers in real-time. The platform should be easy to use, intuitive, and reliable. The project must be completed within a limited time frame and budget.
 
