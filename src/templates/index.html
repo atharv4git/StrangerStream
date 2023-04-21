@@ -11,33 +11,71 @@
     <p id="status">Status:</p>
     <img id="video" src="https://i.imgflip.com/5bj7o4.gif" alt="Webcam Feed">
     <br>
-    <button onclick="startVideo()">Start</button>
-    <button onclick="stopVideo()">Stop</button>
-    <textarea id="chat" placeholder="Type your message here..."></textarea>
+    <button onclick="toggleVideo()">
+        <span id="toggle-text">Start</span>
+    </button>
+    <textarea id="chat"></textarea>
+<!--    <input type="text" id="message" placeholder="Enter your message">-->
+    <button onclick="sendMessage()">Send</button>
+
 
     <script>
         var video = document.getElementById('video');
-        var isPlaying = false;
-        var intervalId;
+var isPlaying = false;
+var intervalId;
 
-        function startVideo() {
-            if (!isPlaying) {
-                document.getElementById("status").style.color = 'green';
-                document.getElementById("status").innerHTML = "Status: True"
-                video.src = "{{ url_for('video_feed') }}";
-                isPlaying = true;
-            }
-        }
+var chat = document.getElementById('chat');
+var messageInput = document.getElementById("message");
 
-        function stopVideo() {
-            if (isPlaying) {
-                document.getElementById("status").style.color = 'red';
-                document.getElementById("status").innerHTML = "Status: False"
-                clearInterval(intervalId);
-                video.src = "https://i.imgflip.com/5bj7o4.gif";
-                isPlaying = false;
-            }
-        }
+function toggleVideo() {
+  var statusEl = document.getElementById("status");
+  if (!isPlaying) {
+    statusEl.style.color = 'green';
+    statusEl.innerHTML = "Status: True"
+    video.src = "{{ url_for('video_feed') }}";
+    isPlaying = true;
+    document.getElementById("toggle-text").innerHTML = "Stop";
+  } else {
+    statusEl.style.color = 'red';
+    statusEl.innerHTML = "Status: False"
+    clearInterval(intervalId);
+    video.src = "https://i.imgflip.com/5bj7o4.gif";
+    isPlaying = false;
+    document.getElementById("toggle-text").innerHTML = "Start";
+  }
+}
+
+chat.addEventListener('keydown', function(event) {
+  if (event.keyCode === 13 && !event.shiftKey) {
+    event.preventDefault();
+    var message = this.value.trim();
+    if (message !== '') {
+      this.value = ''; // clear the input
+      var chatbox = document.getElementById('chat');
+      chatbox.value += 'User: ' + message + '\n';
+    }
+  }
+});
+
+
+messageInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    sendMessage();
+  }
+});
+
+function sendMessage() {
+  var chatbox = document.getElementById("chat");
+  var message = messageInput.value.trim();
+  var username = "User123"; // replace with the user's actual name
+
+  if (message) {
+    chatbox.value += username + ": " + message + "\n";
+    messageInput.value = "";
+  }
+}
+
     </script>
 </body>
 </html>
