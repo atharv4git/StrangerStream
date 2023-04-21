@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>Video Feed</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>Video Feed</h1>
+    <hr>
     <img id="video" src="{{ url_for('video_feed') }}" alt="Webcam Feed">
     <br>
     <button onclick="startVideo()">Start</button>
@@ -24,7 +26,7 @@
         function stopVideo() {
             if (isPlaying) {
                 clearInterval(intervalId);
-                video.src = "";
+                video.src = "https://i.imgflip.com/5bj7o4.gif";
                 isPlaying = false;
             }
         }
