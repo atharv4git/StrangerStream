@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Feed</title>
+</head>
+<body>
+    <h1>Video Feed</h1>
+    <img id="video" src="{{ url_for('video_feed') }}" alt="Webcam Feed">
+    <br>
+    <button onclick="startVideo()">Start</button>
+    <button onclick="stopVideo()">Stop</button>
+    <script>
+        var video = document.getElementById('video');
+        var isPlaying = true;
+        var intervalId;
+
+        function startVideo() {
+            if (!isPlaying) {
+                video.src = "{{ url_for('video_feed') }}";
+                isPlaying = true;
+            }
+        }
+
+        function stopVideo() {
+            if (isPlaying) {
+                clearInterval(intervalId);
+                video.src = "";
+                isPlaying = false;
+            }
+        }
+    </script>
+</body>
+</html>
