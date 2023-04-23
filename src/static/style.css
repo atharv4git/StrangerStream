@@ -9,15 +9,15 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 3rem;
-  margin-top: 2rem;
+  font-size: 2rem;
+  margin-top: 1rem;
 }
 
 code {
   display: block;
   text-align: center;
-  font-size: 1.5rem;
-  margin-top: 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 hr {
@@ -30,15 +30,15 @@ hr {
 
 #status {
   text-align: center;
-  font-size: 1.5rem;
-  margin-top: 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 #video {
-  display: block;
+  display: inline-block;
   margin: 0 auto;
-  width: 80%;
-  max-width: 500px;
+  width: 100%;
+  max-width: 400px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -59,6 +59,7 @@ button {
 button:hover {
   background-color: #3e8e41;
 }
+
 
 #chat {
   background-color: #000;
